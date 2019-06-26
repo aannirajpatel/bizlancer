@@ -2,7 +2,12 @@
 require 'includes/db.php';
 if(isset($_POST['forgot'])){
     $email = mysqli_real_escape_string($con, $_POST['forgot']);
-    $existQuery = "SELECT * FROM user WHERE email = $email";
+    $existQuery = "SELECT * FROM user WHERE email = '$email'";
+    $existResult = mysqli_connect($con, $existQuery);
+    if(mysqli_num_rows($existResult) == 0){
+        header("location:login.php?message=");
+    }
+    $existData = mysqli_fetch_array($existResult);
 }
 ?>
 

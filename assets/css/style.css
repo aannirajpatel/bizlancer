@@ -5396,13 +5396,17 @@ body.simple-bg-screen:before {
     opacity: .8
 }
 
-.login-screen, .lost-ps-screen, .signup-screen {
+.login-screen, .lost-ps-screen, .signup-screen{
     position: relative;
     max-width: 450px;
     margin: 12% auto 0
 }
 
-section.login-screen-sec, section.lost-ps-screen-sec, section.signup-screen-sec {
+.lost-msg{
+    position: relative;
+}
+
+section.login-screen-sec, section.lost-ps-screen-sec, section.signup-screen-sec, .lost-msg {
     background: 0 0
 }
 

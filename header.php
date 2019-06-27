@@ -1,4 +1,18 @@
 <?php
+if(isset($_COOKIE['email']) && isset($_COOKIE['password']) && isset($con)){
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = md5($_POST['password']);
+    $loginQuery = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+    $loginResult = mysqli_query($con, $loginQuery);
+    if (mysqli_num_rows($loginResult) == 1) {
+        if(isset($_POST['remember']) && $_POST['remember']=='Yes'){
+            setcookie("email",$email,time()+86400*10);
+            setcookie("pass", $password, time()+86400*10);
+        }
+        $loginData = mysqli_fetch_array($loginResult);
+        $_SESSION['uid']= $loginData['uid'];
+    }
+}
 if (!isset($_SESSION['uid'])) {
     ?>
 

@@ -17,10 +17,10 @@ if (isset($_POST['signup'])) {
         $signUpQuery = "INSERT INTO user(`name`, email, phone, `type`, password, dateofjoin,userimg) VALUES ('$name','$email','$phone',$type,'$password',CURRENT_TIMESTAMP,'assets/img/user/user.jpg')";
         $signUpResult = mysqli_query($con, $signUpQuery) or die(mysqli_error($con));
         $getUidQuery = "SELECT uid FROM user WHERE email='$email'";
-        $getUidResult = mysqli_query($con,$getUidQuery) or die(mysqli_error($con));
+        $getUidResult = mysqli_query($con, $getUidQuery) or die(mysqli_error($con));
         $getUidData = mysqli_fetch_array($getUidResult);
         $uid = $getUidData['uid'];
-        $_SESSION['uid']=$uid;
+        $_SESSION['uid'] = $uid;
         if (isset($_SESSION['fw'])) {
             $fw = $_SESSION['fw'];
             unset($_SESSION['fw']);
@@ -34,14 +34,46 @@ if (isset($_POST['signup'])) {
         }
     }
 }
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = md5($_POST['password']);
+    $loginQuery = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+    $loginResult = mysqli_query($con, $loginQuery);
+    if (mysqli_num_rows($loginResult) == 1) {
+        setcookie("email", $email, time() + 86400 * 10);
+        setcookie("pass", $password, time() + 86400 * 10);
+        $loginData = mysqli_fetch_array($loginResult);
+        $_SESSION['uid'] = $loginData['uid'];
+        if (isset($_SESSION['fw'])) {
+            $fw = $_SESSION['fw'];
+            unset($_SESSION['fw']);
+            header_remove();
+            header("location:" . $fw);
+            die();
+        } else {
+            header_remove();
+            header("location:index.php");
+            die();
+        }
+    } else {
+        $message = "Invalid login. Please check email or password.";
+    }
+}
 if (isset($_POST['login'])) {
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = md5($_POST['password']);
     $loginQuery = "SELECT * FROM user WHERE email='$email' AND password='$password'";
     $loginResult = mysqli_query($con, $loginQuery);
     if (mysqli_num_rows($loginResult) == 1) {
+        if (isset($_POST['remember']) && $_POST['remember'] == 'Yes') {
+            setcookie("email", $email, time() + 86400 * 10);
+            setcookie("pass", $password, time() + 86400 * 10);
+        } else{
+            setcookie("email","",time()-1);
+            setcookie("pass","",time()-1);
+        }
         $loginData = mysqli_fetch_array($loginResult);
-        $_SESSION['uid']= $loginData['uid'];
+        $_SESSION['uid'] = $loginData['uid'];
         if (isset($_SESSION['fw'])) {
             $fw = $_SESSION['fw'];
             unset($_SESSION['fw']);
@@ -206,9 +238,10 @@ if (isset($_POST['login'])) {
                             <div class="row">
                                 <div class="col-xs-12 mrg-top-5">
 										<span class="custom-checkbox">
-											<input type="checkbox" id="1">
-											<label for="1"></label>
-										</span> Forgot Password? <a href="lost-password.php" class="cl-success">Click Here</a>
+											<input type="checkbox" id="1" name="remember" value="Yes">
+											<label for="1">Remember Me</label>
+										</span> Forgot Password? <a href="lost-password.php" class="cl-success">Click
+                                        Here</a>
                                 </div>
                             </div>
                             <div class="row">

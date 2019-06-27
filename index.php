@@ -3,8 +3,6 @@ require('includes/db.php');
 require 'includes/files.php';
 require 'includes/constants.php';
 session_start();
-$citiesContent = file_get_contents("./assets/plugins/cities/cities-name-list.json");
-$citiesArray = json_decode($citiesContent);
 ?>
 <!doctype html>
 <html lang="en">
@@ -121,7 +119,7 @@ $citiesArray = json_decode($citiesContent);
             </div>
             <div class="row extra-mrg">
                 <?php
-                $jobQuery = "SELECT * FROM job, company WHERE job.cid = company.cid ORDER BY startdate DESC LIMIT 8";
+                $jobQuery = "SELECT company.cimg, job.jid, job.title, job.jobtype, job.location, job.pay, job.paytype FROM job, company WHERE job.cid = company.cid ORDER BY startdate DESC LIMIT 8";
                 $jobResult = mysqli_query($con, $jobQuery) or die(mysqli_error($con));
                 while($jobData = mysqli_fetch_array($jobResult)){
                 ?>

@@ -103,6 +103,9 @@ if($cid==-1){
                                                     <a href="edit-job.php?jid=<?php echo $jobRow['jid']; ?>"
                                                        data-toggle="tooltip" title="Edit"><i
                                                                 class="fa fa-edit"></i></a>
+                                                    <a href="job-detail.php?jid=<?php echo $jobRow['jid']; ?>"
+                                                       data-toggle="tooltip" title="View Job Listing"><i
+                                                                class="fa fa-eye"></i></a>
                                                     <a href="delete-job.php?jid=<?php echo $jobRow['jid']; ?>"
                                                        data-toggle="tooltip" title="Delete"><i
                                                                 class="fa fa-trash-o"></i></a>

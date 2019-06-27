@@ -135,7 +135,7 @@ $jobTitle = $jobTitleData['title'];
                                             </div>
                                             <div class="col-md-2 col-sm-2">
                                                 <div class="browse-resume-rate">
-                                                    <span><i class="fa fa-money"></i><?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
+                                                    <span><i class="fa fa-money"></i>₹<?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@ $jobTitle = $jobTitleData['title'];
                                             </div>
                                             <div class="col-md-2 col-sm-2">
                                                 <div class="browse-resume-rate">
-                                                    <span><i class="fa fa-money"></i><?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
+                                                    <span><i class="fa fa-money"></i>₹<?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +345,7 @@ $jobTitle = $jobTitleData['title'];
                                             </div>
                                             <div class="col-md-2 col-sm-2">
                                                 <div class="browse-resume-rate">
-                                                    <span><i class="fa fa-money"></i><?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
+                                                    <span><i class="fa fa-money"></i>₹<?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -450,7 +450,7 @@ $jobTitle = $jobTitleData['title'];
                                             </div>
                                             <div class="col-md-2 col-sm-2">
                                                 <div class="browse-resume-rate">
-                                                    <span><i class="fa fa-money"></i><?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
+                                                    <span><i class="fa fa-money"></i>₹<?php echo $userData['minpay'] . "-".$userData['maxpay']."/" . $payScaleArray[$userData['paytype']]; ?></span>
                                                 </div>
                                             </div>
                                         </div>

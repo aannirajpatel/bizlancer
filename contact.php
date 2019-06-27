@@ -11,7 +11,7 @@ if(isset($_POST['contactrequest'])){
     $name = mysqli_real_escape_string($con, $_POST['name']);
     $phone = mysqli_real_escape_string($con, $_POST['phone']);
     $msg = "Name: ".$name."<br>Phone:<a href='tel:$phone'>".$phone."</atel><br>Message:<br>".mysqli_real_escape_string($con, $_POST['msg']);
-    $mailHeader = "From:$from\r\nContent-Type:text/html";
+    $mailHeader = "MIME-Version: 1.0\r\nContent-Type:text/html\r\nFrom: support@bizlancer.com\r\n";
     mail($to,$sub,$msg,$mailHeader);
 }
 ?>
@@ -87,7 +87,7 @@ if(isset($_POST['contactrequest'])){
 			<!-- contact form -->
 			<section class="contact-form">
 				<div class="container">
-                    <form method="post" action="">
+                    <form method="post" action="" id="contact-form">
 					<h2>Drop A Mail</h2>
 					
 					<div class="col-md-6 col-sm-6">

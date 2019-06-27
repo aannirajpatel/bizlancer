@@ -72,6 +72,9 @@ if(getUserTypeFromTable($con,$uid)!=USER_CANDIDATE){
                                 $jobQuery = "SELECT * FROM job, application WHERE application.uid=$uid AND job.jid = application.jid";
                                 $jobResult = mysqli_query($con, $jobQuery) or die(mysqli_error($con));
                                 while ($jobRow = mysqli_fetch_array($jobResult)) {
+                                    $companyQuery = "SELECT * FROM company WHERE cid=".$jobRow['cid'];
+                                    $companyResult = mysqli_query($con, $companyQuery) or die(mysqli_error($con));
+                                    $companyRow = mysqli_fetch_array($companyResult);
                                     ?>
                                     <article>
                                         <div class="mng-company">
@@ -79,7 +82,7 @@ if(getUserTypeFromTable($con,$uid)!=USER_CANDIDATE){
                                                 <div class="mng-company-name">
                                                     <h4><?php echo $jobRow['title']; ?><span class="cmp-tagline"></span>
                                                     </h4>
-                                                    <span class="cmp-time">Status: <?php echo $statusArray[$jobRow['status']]; ?></span>
+                                                    <span class="cmp-time">Company: <?php echo $companyRow['cname'];?>,&nbsp;Status: <?php echo $statusArray[$jobRow['status']]; ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-sm-3">

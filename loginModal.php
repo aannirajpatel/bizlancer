@@ -21,6 +21,9 @@
                                             <input type="password" name="password" class="form-control"
                                                    placeholder="Password" required="">
                                             <br>
+                                            <input type="checkbox" name="remember" value="Yes">
+                                            <label for="remember">Remember me</label>
+                                            <br>
                                             </span> Forgot Password? <a href="lost-password.php" class="cl-success">Click Here</a>
                                             <div class="center">
                                                 <button type="submit" id="login-btn" class="submit-btn" name="login"> Login
